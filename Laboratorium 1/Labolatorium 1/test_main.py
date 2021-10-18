@@ -6,7 +6,7 @@ import pickle
 import math
 import numpy as np
 
-expected = pickle.load(open('expected','rb'))
+expected = pickle.load(open('expected', 'rb'))
 
 results_cylinder_area = expected['cylinder_area']
 results_fib = expected['fib']
@@ -16,9 +16,10 @@ results_custom_matrix = expected['custom_matrix']
 @pytest.mark.parametrize("r,h,result", results_cylinder_area)
 def test_cylinder_area(r:float,h:float,result):
     if math.isnan(result):
-        assert math.isnan(main.cylinder_area(r,h)), 'Spodziewany wynik: {0}, aktualny {1}. Błedy wejścia.'.format(result, main.cylinder_area(r,h))
+        assert math.isnan(
+            main.cylinder_area(r, h)), 'Spodziewany wynik: {0}, aktualny {1}. Błedy wejścia.'.format(result, main.cylinder_area(r, h))
     else:
-        assert main.cylinder_area(r,h) == pytest.approx(result), 'Spodziewany wynik: {0}, aktualny {1}. Błędy implementacji.'.format(result, main.cylinder_area(r,h))
+        assert main.cylinder_area(r, h) == pytest.approx(result), 'Spodziewany wynik: {0}, aktualny {1}. Błędy implementacji.'.format(result, main.cylinder_area(r, h))
 
 @pytest.mark.parametrize("n,result", results_fib)
 def test_fib(n:int,result):
@@ -38,6 +39,6 @@ def test_matrix_calculations(a:float,result):
 @pytest.mark.parametrize("m,n,result", results_custom_matrix)
 def test_custom_matrix(m:int, n:int,result):
         if result is None:
-            assert main.custom_matrix(m,n) is None, 'Spodziewany wynik: {0}, aktualny {1}. Błedy wejścia.'.format(result, main.custom_matrix(m,n))
+            assert main.custom_matrix(m, n) is None, 'Spodziewany wynik: {0}, aktualny {1}. Błedy wejścia.'.format(result, main.custom_matrix(m, n))
         else:
-            assert main.custom_matrix(m,n) == pytest.approx(result), 'Spodziewany wynik: {0}, aktualny {1}. Błędy implementacji.'.format(result, main.custom_matrix(m,n))
+            assert main.custom_matrix(m, n) == pytest.approx(result), 'Spodziewany wynik: {0}, aktualny {1}. Błędy implementacji.'.format(result, main.custom_matrix(m, n))
